@@ -1,0 +1,3 @@
+<% target_model.constantize.columns_hash.each_pair do |key, column| %>
+  <p><%= key %>: <%%= @entry.<%= target_model.underscore %>.attributes["<%= key %>"] %></p>
+<% end %>

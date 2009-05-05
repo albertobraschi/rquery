@@ -1,0 +1,21 @@
+<%% form_for @search do |f| %>
+  
+  <% search_columns.each do |c| %>
+    <p>
+      <%= c[:name]%>:
+      <%=
+        case c[:type]
+          when "string", "text"
+            "<%= f.text_field :#{c[:name]} %%>"
+          when "datetime"
+            "<%= f.datetime_select :#{c[:name]} %%>"
+          when "date"
+            "<%= f.date_select :#{c[:name]} %%>"
+        end
+      %>
+    </p>
+  <% end %>
+  
+  <%%= f.submit "suchen" %>
+  
+<%% end %>
