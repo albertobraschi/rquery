@@ -1,9 +1,10 @@
 <%% form_for @search do |f| %>
+<table border="1" cellspacing="2" cellpadding="2">
   
   <% search_columns.each do |c| %>
-    <p>
-      <%= c[:name]%>:
-      <%=
+    <tr>
+      <td width="150"><%= c[:name]%>:</td>
+      <td><%=
         case c[:input]
           when :text
             "<%= f.text_field :#{c[:name]} %%>"
@@ -14,10 +15,13 @@
           when :select
             "<%= f.select(:#{c[:name]}, ::#{c[:name].titleize}.find(:all).map { |item| [item.name, item.id] }, :prompt => 'Bitte wählen' ) %%>"
         end
-      %>
-    </p>
+      %></td>
+    </tr>
   <% end %>
+  <tr>
+    <td colspan="2"><%%= f.submit "suchen" %></td>
+  </tr>
   
-  <%%= f.submit "suchen" %>
   
+</table>
 <%% end %>
