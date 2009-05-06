@@ -8,9 +8,9 @@
           when :text
             "<%= f.text_field :#{c[:name]} %%>"
           when :datetime
-            "<%= f.datetime_select :#{c[:name]} %%>"
+            "<%= f.datetime_select :#{c[:name]}, :prompt => 'Bitte wählen' %%>"
           when :date
-            "<%= f.date_select :#{c[:name]} %%>"
+            "<%= f.date_select :#{c[:name]}, :prompt => 'Bitte wählen' %%>"
           when :select
             "<%= f.select(:#{c[:name]}, ::#{c[:name].titleize}.find(:all).map { |item| [item.name, item.id] }, :prompt => 'Bitte wählen' ) %%>"
         end
