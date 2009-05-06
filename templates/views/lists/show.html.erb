@@ -10,7 +10,12 @@
   <tr>
       <% list_columns.each do |c| %>
       <td>
-        <%%= e.<%= target_model.underscore %>.attributes['<%= c %>'] %>
+        <% if c =~ /_id$/ %>
+          <%%= e.<%= target_model.underscore %>.<%= c.titleize.underscore %>.try(:name) %>
+        <% else %>
+          <%%= e.<%= target_model.underscore %>.attributes['<%= c %>'] %>
+        <% end %>
+        &nbsp;
       </td>
       <% end %>
       <td><%%= link_to "details", e %></td>
