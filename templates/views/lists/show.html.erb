@@ -1,3 +1,10 @@
 <%% @list.entries.each do |e| %>
-  <p>id: <%%= e.id %>, created_at: <%%= e.created_at %> --- <%%= link_to "details", e %></p>
+
+  <p>
+    <% list_columns.each do |c| %>
+      <b><%= c %></b>: <%%= e.<%= target_model.underscore %>.attributes['<%= c %>'] %>,
+    <% end %>
+     --- <%%= link_to "details", e %>
+  </p>
+  
 <%% end %>

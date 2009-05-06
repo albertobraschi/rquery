@@ -77,6 +77,11 @@ class RqueryGenerator < Rails::Generator::NamedBase
     class_name
   end
   
+  def list_columns
+    columns = arguments("list-columns")
+    columns.split(/,/)
+  end
+  
   def search_columns
     columns = arguments("search-columns")
     columns.split(/,/).collect do |it|
