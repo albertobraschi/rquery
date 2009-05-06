@@ -1,5 +1,15 @@
 class RqueryGenerator < Rails::Generator::NamedBase
   
+  def arguments(param)
+
+		args.each do |value|
+		  token = value.split("=")
+		  return token[1] if token[0] == param
+		end
+		
+		nil
+  end  
+  
   def manifest
  
     record do |m|
@@ -68,10 +78,8 @@ class RqueryGenerator < Rails::Generator::NamedBase
   end
   
   def search_columns
-    colums = args.clone
-    colums.shift
-    
-    colums.collect do |it|
+    columns = arguments("search-columns")
+    columns.split(/,/).collect do |it|
       token = it.split(/:/)
       {:name => token[0], :type => token[1]}
     end
