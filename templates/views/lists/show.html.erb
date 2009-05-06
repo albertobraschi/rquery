@@ -1,10 +1,20 @@
-<%% @list.entries.each do |e| %>
-
-  <p>
+<table border="1" cellspacing="2" cellpadding="2">
+  <tr>
     <% list_columns.each do |c| %>
-      <b><%= c %></b>: <%%= e.<%= target_model.underscore %>.attributes['<%= c %>'] %>,
+      <th><%= c %></th>
     <% end %>
-     --- <%%= link_to "details", e %>
-  </p>
+    <th>detail</th>
+  </tr>
   
-<%% end %>
+  <%% @list.entries.each do |e| %>
+  <tr>
+      <% list_columns.each do |c| %>
+      <td>
+        <%%= e.<%= target_model.underscore %>.attributes['<%= c %>'] %>
+      </td>
+      <% end %>
+      <td><%%= link_to "details", e %></td>
+  </tr>
+  <%% end %>
+  
+</table>
