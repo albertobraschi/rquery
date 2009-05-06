@@ -4,13 +4,15 @@
     <p>
       <%= c[:name]%>:
       <%=
-        case c[:type]
-          when "string", "text"
+        case c[:input]
+          when :text
             "<%= f.text_field :#{c[:name]} %%>"
-          when "datetime"
+          when :datetime
             "<%= f.datetime_select :#{c[:name]} %%>"
-          when "date"
+          when :date
             "<%= f.date_select :#{c[:name]} %%>"
+          when :select
+            "<%= f.select(:#{c[:name]}, ::#{c[:name].titleize}.find(:all).map { |item| [item.name, item.id] }, :prompt => 'Bitte wählen' ) %%>"
         end
       %>
     </p>

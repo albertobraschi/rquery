@@ -86,7 +86,26 @@ class RqueryGenerator < Rails::Generator::NamedBase
     columns = arguments("search-columns")
     columns.split(/,/).collect do |it|
       token = it.split(/:/)
-      {:name => token[0], :type => token[1]}
+      
+      name = token[0]
+      type = token[1]
+      
+      input = case type
+        when "string", "text", "integer"
+          :text
+        when "datetime"
+          :datetime
+        when "date"
+          :date
+        else
+          :text
+      end
+      
+      if name =~ /_id$/
+        input = :select
+      end
+      
+      {:name => name, :type => type, :input => input}
     end
   end
   
