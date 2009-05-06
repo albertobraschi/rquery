@@ -10,7 +10,7 @@ class Query::<%= target_module %>::SearchesController < ApplicationController
       result_list = @search.execute_search do |scope|
         
         <% search_columns.each do |c| %>
-          scope = scope.scoped(:conditions => [" <%= c[:name] %> = ? ", @search.<%= c[:name] %>]) unless @search.<%= c[:name] %>
+          scope = scope.scoped(:conditions => [" <%= c[:name] %> = ? ", @search.<%= c[:name] %>]) unless @search.<%= c[:name] %>.blank?
         <% end %>
         
         scope = scope.scoped(:limit => 10)
