@@ -6,7 +6,7 @@ class RqueryGenerator < Rails::Generator::NamedBase
       
       m.directory "app/controllers/query/#{target_module.underscore}"
       m.directory "app/models/query/#{target_module.underscore}"
-      m.directory "app/view/query/#{target_module.underscore}"
+      m.directory "app/views/query/#{target_module.underscore}"
  
       m.template "controllers/searches_controller.rb",  "app/controllers/query/#{target_module.underscore}/searches_controller.rb"
       m.template "controllers/lists_controller.rb",     "app/controllers/query/#{target_module.underscore}/lists_controller.rb"
